@@ -26,15 +26,16 @@ class ViewController: UIViewController {
     }
     
     @IBAction func sliderValueChanged(_ sender: UISlider) {
-        print(sender.value)
+        let intValue: Int = Int(sender.value)
+        sliderValueLabel.text = String(intValue)
     }
     
     @IBAction func touchUpHitButton(_ sender: UIButton) {
-        print(slider.value)
+        let hitValue: Int = Int(slider.value)
+        slider.value = Float(hitValue)
     }
     
     @IBAction func touchUpResetButton(_ sender: UIButton) {
-        print("touch up reset button")
         reset()
     }
     
@@ -47,9 +48,9 @@ class ViewController: UIViewController {
         slider.minimumValue = 0
         slider.maximumValue = 30
         slider.value = 15
-        minimunValueLabel.text = String(slider.minimumValue)
-        maximunValueLabel.text = String(slider.maximumValue)
-        sliderValueLabel.text = String(slider.value)
+        minimunValueLabel.text = String(Int(slider.minimumValue))
+        maximunValueLabel.text = String(Int(slider.maximumValue))
+        sliderValueLabel.text = String(Int(slider.value))
     }
 
 }
