@@ -45,6 +45,9 @@
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                     </preferredSymbolConfiguration>
                                 </state>
+                                <connections>
+                                    <segue destination="XIg-Gx-gjF" kind="presentation" id="F0I-s5-TtI"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hML-Nu-HVo">
                                 <rect key="frame" x="804" y="26" width="28" height="25"/>
@@ -157,6 +160,9 @@ hanjisu2215g@gmail.com</string>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                     </preferredSymbolConfiguration>
                                 </state>
+                                <connections>
+                                    <action selector="touchUpDismissButton:" destination="XIg-Gx-gjF" eventType="touchUpInside" id="H0Y-Qr-rq6"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yagom_symbol" translatesAutoresizingMaskIntoConstraints="NO" id="chp-gU-KeW">
                                 <rect key="frame" x="60" y="127" width="167" height="160.5"/>
@@ -178,7 +184,7 @@ hanjisu2215g@gmail.com</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MXX-WM-3ue" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="797.54464285714278" y="118.84057971014494"/>
+            <point key="canvasLocation" x="829" y="119"/>
         </scene>
     </scenes>
     <resources>
