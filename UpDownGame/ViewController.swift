@@ -11,6 +11,8 @@ class ViewController: UIViewController {
     
     var randomValue: Int = 0
     var tryCount: Int = 0
+    let maximumRamdomValue: Int = 30
+    let maximumTryCount: Int = 5
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var tryCountLabel: UILabel!
     @IBOutlet weak var sliderValueLabel: UILabel!
@@ -47,12 +49,12 @@ class ViewController: UIViewController {
         slider.value = Float(hitValue)
         
         tryCount += 1
-        tryCountLabel.text = "\(tryCount) / 5"
+        tryCountLabel.text = "\(tryCount) / \(maximumTryCount)"
         
         if randomValue == hitValue {
             showAlert(message: "YOU HIT!!")
             reset()
-        } else if tryCount >= 5 {
+        } else if tryCount >= maximumTryCount {
             showAlert(message: "You lose...")
             reset()
         } else if randomValue > hitValue {
@@ -62,6 +64,9 @@ class ViewController: UIViewController {
             slider.maximumValue = Float(hitValue)
             maximunValueLabel.text = String(hitValue)
         }
+        
+        slider.value = (slider.maximumValue / 2) + (slider.minimumValue / 2)
+        sliderValueLabel.text = String(Int(slider.value))
     }
     
     @IBAction func touchUpResetButton(_ sender: UIButton) {
@@ -69,18 +74,16 @@ class ViewController: UIViewController {
     }
     
     func reset() {
-        print("reset!")
-        randomValue = Int.random(in: 0...30)
+        randomValue = Int.random(in: 0...maximumRamdomValue)
         print(randomValue)
         tryCount = 0
-        tryCountLabel.text = "0 / 5"
+        tryCountLabel.text = "0 / \(maximumTryCount)"
         slider.minimumValue = 0
-        slider.maximumValue = 30
-        slider.value = 15
+        slider.maximumValue = Float(maximumRamdomValue)
+        slider.value = Float(maximumRamdomValue / 2)
         minimunValueLabel.text = String(Int(slider.minimumValue))
         maximunValueLabel.text = String(Int(slider.maximumValue))
         sliderValueLabel.text = String(Int(slider.value))
     }
 
 }
-
