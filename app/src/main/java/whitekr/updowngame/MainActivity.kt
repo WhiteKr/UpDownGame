@@ -11,16 +11,18 @@ import android.widget.TextView
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
-	var goal: Int = 0
+	private var goal: Int = 0
+	private var tryCount: Int = 0
+	private val maxTry: Int = 5
 
 	private val min: Int = 0
 	private val max: Int = 30
 
-	lateinit var slider: SeekBar
-	lateinit var sliderCount: TextView
-	lateinit var sMin: TextView
-	lateinit var sMax: TextView
-	lateinit var submitBtn: Button
+	private lateinit var slider: SeekBar
+	private lateinit var sliderCount: TextView
+	private lateinit var sMin: TextView
+	private lateinit var sMax: TextView
+	private lateinit var submitBtn: Button
 
 	@RequiresApi(Build.VERSION_CODES.O)
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,14 +51,19 @@ class MainActivity : AppCompatActivity() {
 
 		submitBtn.setOnClickListener {
 			val n: Int = slider.progress
-			if (n == goal) {
-				slider.reset(min, max, true)
-				Toast.makeText(this, "정답 ㅊㅊ", Toast.LENGTH_SHORT).show()
-			} else {
-				if (n > goal) {
-					slider.reset(slider.min, n - 1)
-				} else {
-					slider.reset(n + 1, slider.max)
+			++tryCount
+			when {
+				tryCount >= maxTry -> {
+					Toast.makeText(this, "응틀림", Toast.LENGTH_SHORT).show()
+					slider.reset(min, max, true)
+				}
+				n == goal -> {
+					slider.reset(min, max, true)
+					Toast.makeText(this, "정답 ㅊㅊ", Toast.LENGTH_SHORT).show()
+				}
+				else -> {
+					if (n > goal) slider.reset(slider.min, n - 1)
+					else slider.reset(n + 1, slider.max)
 				}
 			}
 		}
@@ -65,6 +72,7 @@ class MainActivity : AppCompatActivity() {
 	@RequiresApi(Build.VERSION_CODES.O)
 	fun SeekBar.reset(min: Int, max: Int, totally: Boolean = false) {
 		if (totally) {
+			tryCount = 0
 			goal = (Math.random() * (max - min + 1)).toInt() + min
 			Log.e("goal", goal.toString())
 		}
