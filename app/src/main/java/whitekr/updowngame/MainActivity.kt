@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 		sMax = findViewById(R.id.main_textView_max)
 		submitBtn = findViewById(R.id.main_button_submit)
 
-		reset()
+		slider.reset(min, max, true)
 
 		slider.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 			override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -50,22 +50,36 @@ class MainActivity : AppCompatActivity() {
 		submitBtn.setOnClickListener {
 			val n: Int = slider.progress
 			if (n == goal) {
-				reset()
+				slider.reset(min, max, true)
 				Toast.makeText(this, "정답 ㅊㅊ", Toast.LENGTH_SHORT).show()
+			} else {
+				if (n > goal) {
+					slider.reset(slider.min, n - 1)
+				} else {
+					slider.reset(n + 1, slider.max)
+				}
 			}
 		}
 	}
 
 	@RequiresApi(Build.VERSION_CODES.O)
-	fun reset() {
-		goal = (Math.random() * (max - min + 1)).toInt() + min
-		Log.e("goal", goal.toString())
+	fun SeekBar.reset(min: Int, max: Int, totally: Boolean = false) {
+		if (totally) {
+			goal = (Math.random() * (max - min + 1)).toInt() + min
+			Log.e("goal", goal.toString())
+		}
 
-		slider.min = min
-		slider.max = max
+		this.min = min
+		this.max = max
+		this.progress = (slider.max / 2) + (slider.min / 2)
+
+		resetView()
+	}
+
+	@RequiresApi(Build.VERSION_CODES.O)
+	fun resetView() {
 		sMin.text = slider.min.toString()
 		sMax.text = slider.max.toString()
-		slider.progress = max / 2
 		sliderCount.text = slider.progress.toString()
 	}
 }
