@@ -53,13 +53,13 @@ class MainActivity : AppCompatActivity() {
 			val n: Int = slider.progress
 			++tryCount
 			when {
-				tryCount >= maxTry -> {
-					Toast.makeText(this, "응틀림", Toast.LENGTH_SHORT).show()
-					slider.reset(min, max, true)
-				}
 				n == goal -> {
 					slider.reset(min, max, true)
 					Toast.makeText(this, "정답 ㅊㅊ", Toast.LENGTH_SHORT).show()
+				}
+				tryCount >= maxTry -> {
+					Toast.makeText(this, "응틀림", Toast.LENGTH_SHORT).show()
+					slider.reset(min, max, true)
 				}
 				else -> {
 					if (n > goal) slider.reset(slider.min, n - 1)
