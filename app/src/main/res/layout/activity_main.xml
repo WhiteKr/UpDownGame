@@ -6,13 +6,47 @@
 	android:layout_height="match_parent"
 	tools:context=".MainActivity">
 
+	<SeekBar
+		android:id="@+id/main_seekBar_slider"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintWidth_percent="0.8" />
+
 	<TextView
+		android:id="@+id/main_textView_sliderCount"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="Hello World!"
+		android:layout_marginBottom="30dp"
+		android:text="0"
+		android:textSize="30sp"
+		app:layout_constraintBottom_toTopOf="@+id/main_seekBar_slider"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent" />
+
+	<TextView
+		android:id="@+id/main_textView_min"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="0"
+		android:textSize="30sp"
 		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintLeft_toLeftOf="parent"
-		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintEnd_toStartOf="@+id/main_seekBar_slider"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<TextView
+		android:id="@+id/main_textView_max"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="0"
+		android:textSize="30sp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toEndOf="@+id/main_seekBar_slider"
 		app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
